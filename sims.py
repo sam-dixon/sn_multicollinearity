@@ -108,7 +108,7 @@ def main(alpha, beta, nsims):
             print(gamma, sig_int)
             results.append(run_sim(alpha, beta, gamma, sig_int, nsims=nsims))
     results_df = pd.concat(results, ignore_index=True)
-    result_fname = '{}_{}.csv'.format(alpha, beta)
+    result_fname = '{0.0f}_{0.0f}.csv'.format(alpha*100, beta*10)
     result_path = os.path.join(DATA_DIR, result_fname)
     results_df.to_csv(result_path)
 
