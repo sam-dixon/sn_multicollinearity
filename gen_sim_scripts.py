@@ -6,9 +6,8 @@ SUBMIT_PATH = os.path.join(SCRIPT_DIR, 'submit_all.sh')
 LOG_DIR = os.path.join(os.curdir, 'logs')
 os.makedirs(SCRIPT_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
-os.chmod(SCRIPT_DIR, 755)
-os.chmod(SUBMIT_PATH, 755)
-os.chmod(LOG_DIR, 755)
+os.chmod(SCRIPT_DIR, 0o0755)
+os.chmod(LOG_DIR, 0o0755)
 
 
 TEMPLATE = """#!/bin/bash
@@ -32,4 +31,5 @@ for alpha in alphas:
         with open(SUBMIT_PATH, 'a') as f:
             f.write('qsub {}\n'.format(script_path))
             f.write('sleep 1\n')
+os.chmod(SUBMIT_PATH, 0o755)
 

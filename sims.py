@@ -1,10 +1,11 @@
 import os
+import sys
 import click
 import numpy as np
 import pandas as pd
 from iminuit import Minuit
 
-DATA_DIR = os.path.abspath(os.path.join(os.curdir, 'data'))
+DATA_DIR = os.path.abspath('/home/samdixon/sn_multicollinearity/data')
 DF = pd.read_csv(os.path.join(DATA_DIR, 'combined_data.csv'))
 
 
@@ -100,15 +101,16 @@ def run_sim(alpha=0.14, beta=3.1, gamma=0.8, sig_int=0.6, mag=19.1, nsims=50):
 @click.option('--beta', default=3.1)
 @click.option('--nsims', default=50)
 def main(alpha, beta, nsims):
-    gammas = np.linspace(-0.1, 0.1, 3)
-    sig_ints = np.linspace(0, 0.1, 3)
+    gammas = np.linspace(-0.1, 0.1, 11)
+    sig_ints = np.linspace(0, 0.1, 11)
     results = []
     for gamma in gammas:
         for sig_int in sig_ints:
             print(gamma, sig_int)
+            sys.stdout.flush()
             results.append(run_sim(alpha, beta, gamma, sig_int, nsims=nsims))
     results_df = pd.concat(results, ignore_index=True)
-    result_fname = '{0.0f}_{0.0f}.csv'.format(alpha*100, beta*10)
+    result_fname = '{:02.0f}_{:02.0f}.csv'.format(alpha*100, beta*10)
     result_path = os.path.join(DATA_DIR, result_fname)
     results_df.to_csv(result_path)
 
