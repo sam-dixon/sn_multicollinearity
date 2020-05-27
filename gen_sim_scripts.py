@@ -19,12 +19,13 @@ alphas = np.linspace(0.05, 0.2, 11)
 betas = np.linspace(2.5, 3.5, 11)
 for alpha in alphas:
     for beta in betas:
-        script_fname = '{:02f}_{}.sh'.format(alpha*100, beta*10)
-        script_path = os.path.join(SCRIPT_DIR, script_fname)
-        with open(script_path, 'w') as f:
-            props = {'alpha': alpha,
-                     'beta': beta,
-                     'curr_dir': os.curdir}
-            f.write(TEMPLATE.format(**props))
-        with open(SUBMIT_PATH, 'a') as f:
-            f.write('qsub {}\n'.format(script_path))
+        script_fname = '{:0.0f}_{:0.0f}.sh'.format(alpha*100, beta*10)
+        print(script_fname)
+        # script_path = os.path.join(SCRIPT_DIR, script_fname)
+        # with open(script_path, 'w') as f:
+        #     props = {'alpha': alpha,
+        #              'beta': beta,
+        #              'curr_dir': os.curdir}
+        #     f.write(TEMPLATE.format(**props))
+        # with open(SUBMIT_PATH, 'a') as f:
+        #     f.write('qsub {}\n'.format(script_path))
