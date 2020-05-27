@@ -24,7 +24,9 @@ for alpha in alphas:
         with open(script_path, 'w') as f:
             props = {'alpha': np.round(alpha, 2),
                      'beta': np.round(beta, 1),
-                     'curr_dir': os.curdir}
+                     'curr_dir': os.path.abspath(os.curdir)}
             f.write(TEMPLATE.format(**props))
         with open(SUBMIT_PATH, 'a') as f:
             f.write('qsub {}\n'.format(script_path))
+            f.write('sleep 1\n')
+
