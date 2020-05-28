@@ -21,7 +21,7 @@ alphas = np.linspace(0.05, 0.2, 11)
 betas = np.linspace(2.5, 3.5, 11)
 for alpha in alphas:
     for beta in betas:
-        script_fname = '{:02.0f}_{:02.0f}.sh'.format(alpha*100, beta*10)
+        script_fname = '{:03.0f}_{:02.0f}.sh'.format(alpha*1000, beta*10)
         script_path = os.path.join(SCRIPT_DIR, script_fname)
         with open(script_path, 'w') as f:
             props = {'alpha': np.round(alpha, 2),
@@ -30,6 +30,6 @@ for alpha in alphas:
             f.write(TEMPLATE.format(**props))
         with open(SUBMIT_PATH, 'a') as f:
             f.write('qsub {}\n'.format(script_path))
-            f.write('sleep 1\n')
+            f.write('sleep 0.5\n')
 os.chmod(SUBMIT_PATH, 0o755)
 
