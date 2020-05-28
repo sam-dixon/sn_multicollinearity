@@ -24,7 +24,7 @@ for alpha in alphas:
         script_fname = '{:03.0f}_{:02.0f}.sh'.format(alpha*1000, beta*10)
         script_path = os.path.join(SCRIPT_DIR, script_fname)
         with open(script_path, 'w') as f:
-            props = {'alpha': np.round(alpha, 2),
+            props = {'alpha': np.round(alpha, 3),
                      'beta': np.round(beta, 1),
                      'curr_dir': os.path.abspath(os.curdir)}
             f.write(TEMPLATE.format(**props))
