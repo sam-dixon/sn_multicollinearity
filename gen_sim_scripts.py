@@ -20,6 +20,7 @@ TEMPLATE = """#!/bin/bash
 alphas = np.linspace(0.05, 0.2, 11)
 betas = np.linspace(2.5, 3.5, 11)
 for alpha in alphas:
+    submit_path = os.path.join(SCRIPT_DIR, 'submit_{:03.0f}.sh'.format(alpha*1000))
     for beta in betas:
         script_fname = '{:03.0f}_{:02.0f}.sh'.format(alpha*1000, beta*10)
         script_path = os.path.join(SCRIPT_DIR, script_fname)
@@ -28,8 +29,8 @@ for alpha in alphas:
                      'beta': np.round(beta, 1),
                      'curr_dir': os.path.abspath(os.curdir)}
             f.write(TEMPLATE.format(**props))
-        with open(SUBMIT_PATH, 'a') as f:
+        with open(submit_path, 'a') as f:
             f.write('qsub {}\n'.format(script_path))
             f.write('sleep 0.5\n')
-os.chmod(SUBMIT_PATH, 0o755)
+    os.chmod(submit_path, 0o755)
 
