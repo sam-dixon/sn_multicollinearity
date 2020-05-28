@@ -12,6 +12,7 @@ os.chmod(LOG_DIR, 0o0755)
 
 TEMPLATE = """#!/bin/bash
 #$ -N mc_{alpha}_{beta}
+#$ -l h=compute-2-1
 #$ -e {curr_dir}/logs
 #$ -o {curr_dir}/logs
 /home/samdixon/anaconda3/bin/python {curr_dir}/sims.py --alpha {alpha} --beta {beta}"""
