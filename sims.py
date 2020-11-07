@@ -50,7 +50,7 @@ def fit_separate(df):
     return m_lin.values, m.values, np.std(resids)
 
 
-def run_sim(alpha=0.14, beta=3.1, gamma=0.8, sig_int=0.6, mag=19.1, nsims=50):
+def run_sim(alpha=0.14, beta=3.1, gamma=0.8, sig_int=0.6, mag=-19.1, nsims=50):
     truth = {'alpha': alpha,
              'beta': beta,
              'gamma': gamma,
