@@ -1,0 +1,16 @@
+name: sn_multicollinearity
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - pip
+  - jupyter
+  - jupyterlab
+  - iminuit
+  - tqdm
+  - scikit-learn
+  - scipy
+  - seaborn
